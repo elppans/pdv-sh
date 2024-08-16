@@ -1,0 +1,31 @@
+#!/bin/bash
+# limpar_logs_manager
+
+# Função para limpar logs
+limpar_logs() {
+    local numero_dias="$1"
+    local tamanho_arquivos="$2"
+    local diretorio_base="$3"
+
+    # Encontre e remova diretórios com mais de N dias
+    find "$diretorio_base" -maxdepth 1 -type d -mtime +"$numero_dias" -exec rm -rf {} \;
+
+    # Encontra subdiretórios com tamanho igual ou superior a 1 GB
+    local subdiretorios=$(du -sh -t "$tamanho_arquivos" "$diretorio_base"/* | awk '{print $2}')
+
+    # Remove cada subdiretório encontrado
+    for subdir in $subdiretorios; do
+        echo "Removendo $subdir"
+        rm -r "$subdir"
+    done
+
+    echo "Concluído!"
+}
+
+# Parâmetros
+numero_dias="7"
+tamanho_arquivos="1GB"
+diretorio_base="/usr/local/apache22/htdocs/manager/Logs"
+
+# Chama a função
+limpar_logs "$numero_dias" "$tamanho_arquivos" "$diretorio_base"
