@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Função para limpar cache
+limpar_cache() {
+    # Reinicia o serviço memcached
+    systemctl restart memcached.service
+
+    # Limpa o cache de RAM
+    sync && sysctl -w vm.drop_caches=3 && printf '\n%s\n' 'Ram-cache and Swap Cleared'
+}
+
+# Chama a função
+limpar_cache
