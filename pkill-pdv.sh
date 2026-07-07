@@ -6,5 +6,4 @@ pkill -e -9 Jav
 pkill -e -9 chro
 pkill -e -9 lnx
 cd /Zanthus/Zeus/pdvJava
-pwd
 rm -rfv ZEUSPDV_EXEC.UNICO
