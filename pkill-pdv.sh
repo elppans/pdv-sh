@@ -1,9 +1,10 @@
 #!/bin/bash
 
-pkill -9 mainapp
-pkill -9 pdvJava2
-pkill -9 Jav
-pkill -9 chro
-pkill -9 lnx
+pkill -e -9 mainapp
+pkill -e -9 pdvJava2
+pkill -e -9 Jav
+pkill -e -9 chro
+pkill -e -9 lnx
 cd /Zanthus/Zeus/pdvJava
-rm -rf ZEUSPDV_EXEC.UNICO
+pwd
+rm -rfv ZEUSPDV_EXEC.UNICO
