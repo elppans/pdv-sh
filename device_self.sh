@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# CONFIGURAÇÃO DE BALANÇAS PARA SELF
+# Base rc.local
+
 # -- PROCEDIMENTO --
 # 1) Copiar este Script para o diretório "/Zanthus/Zeus/pdvJava"
 # 2) Adicionar estes 2 comandos no começo do Script PDVTouch.sh:
