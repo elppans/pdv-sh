@@ -7,8 +7,8 @@
 # 1) Copiar este Script para o diretório "/Zanthus/Zeus/pdvJava"
 # 2) Adicionar estes 2 comandos no começo do Script PDVTouch.sh:
 #
-# chmod +x /Zanthus/Zeus/pdvJava/devices-self.sh
-# /Zanthus/Zeus/pdvJava/devices-self.sh
+# chmod +x /Zanthus/Zeus/pdvJava/device_self.sh
+# /Zanthus/Zeus/pdvJava/device_self.sh
 
 # Device BY-ID
 DEVICE_USB0="/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0"
