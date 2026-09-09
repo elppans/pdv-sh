@@ -10,7 +10,7 @@
 # chmod +x /Zanthus/Zeus/pdvJava/device_self.sh
 # /Zanthus/Zeus/pdvJava/device_self.sh
 
-# Device BY-ID
+# Device BY-ID - Balança de Conferência (Sacaria)
 DEVICE_USB0="/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0"
 DEVICE_TOLEDO="$(ls /dev/serial/by-id/usb-TOLEDO_CDC_DEVICE_*-if*)"
 DEVICE_MAGELLAN="$(ls /dev/serial/by-id/usb-Datalogic_S.r.I_and_its_affiliates_Magellan_3x10i_*-if*)"
@@ -53,6 +53,7 @@ echo "TOLEDOCDC_PORT: $TOLEDOCDC_PORT"
 fi
 
 # DATALOGIC MAGELLAN 3X10I
+# Scanner/Balança de Passagem (Datalogic Magellan)
 if ls -l "$DEVICE_MAGELLAN" &>/dev/null ; then
 DEVICE_DATALOGIC_MAGELLAN=$(ls -l "$DEVICE_MAGELLAN" 2>/dev/null | awk '{print $NF}')
 DATALOGIC_PORT=$(basename $DEVICE_DATALOGIC_MAGELLAN 2>/dev/null)
