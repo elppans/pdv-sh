@@ -12,8 +12,8 @@
 
 # Device BY-ID
 DEVICE_USB0="/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0"
-DEVICE_TOLEDO="/dev/serial/by-id/usb-TOLEDO_CDC_DEVICE_*-if*"
-DEVICE_MAGELLAN="/dev/serial/by-id/usb-Datalogic_S.r.I_and_its_affiliates_Magellan_3x10i_*-if*"
+DEVICE_TOLEDO="$(ls /dev/serial/by-id/usb-TOLEDO_CDC_DEVICE_*-if*)"
+DEVICE_MAGELLAN="$(ls /dev/serial/by-id/usb-Datalogic_S.r.I_and_its_affiliates_Magellan_3x10i_*-if*)"
 
 # Device SERIAL
 DEVICE_USB0_SERIAL="/dev/ttyS2"
