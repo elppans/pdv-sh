@@ -15,6 +15,47 @@
 # Disco e partição em variáveis: 
 # O padrão é /dev/sda e /dev/sda3, mas pode trocar com DISK=/dev/sdb PART=/dev/sdb1 ./smart-check.sh.
 
+########################################
+# COMO ACHAR O LBA PARA USAR COM --lba
+########################################
+# O LBA não é um ID que se consulta: ele só existe se o disco já registrou
+# um erro de leitura. Lugares para achar:
+#
+# 1) Log do self-test do SMART (coluna LBA_of_first_error), depois do teste longo:
+#      sudo smartctl -l selftest /dev/sda
+#    Se terminou com "Completed: read failure", o LBA está na última coluna.
+#
+# 2) Log de erros do SMART (LBA de cada erro registrado):
+#      sudo smartctl -l error /dev/sda
+#    Procure "LBA = 0x..." (pode vir em hexa; converta com: printf '%d\n' 0xVALOR)
+#
+# 3) Mensagens do kernel (costuma ser o mais rápido para erros reais):
+#      sudo dmesg | grep -iE 'I/O error|sector'
+#    Ex.: "blk_update_request: I/O error, dev sda, sector 123456"
+#    O número depois de "sector" é o LBA (unidades de 512 bytes, contado
+#    a partir do início do DISCO, não da partição).
+#
+# Obs.: o badblocks NÃO informa LBA, e sim número de bloco (1024 bytes por padrão):
+#      LBA = bloco * tamanho_do_bloco / 512
+#
+# COM O LBA EM MÃOS:
+#   ./smart-check.sh --lba 123456
+#
+# Conversão para bloco do sistema de arquivos:
+#   bloco = (LBA - início_da_partição) * 512 / tamanho_do_bloco_do_fs
+#   - início da partição: cat /sys/class/block/sda3/start
+#   - tamanho do bloco do fs (geralmente 4096):
+#       sudo tune2fs -l /dev/sda3 | grep 'Block size'
+#
+# Depois:
+#   sudo debugfs -R "icheck BLOCO" /dev/sda3   # devolve o inode
+#   sudo debugfs -R "ncheck INODE" /dev/sda3   # devolve o nome do arquivo
+#
+# Limitações:
+#   - debugfs só funciona em ext2/3/4.
+#   - Se nenhum dos comandos acima mostrar LBA, o disco ainda não registrou
+#     erro de leitura e não há setor específico para investigar.
+
 DISK="${DISK:-/dev/sda}"
 PART="${PART:-/dev/sda3}"
 OUT="$HOME/smart.txt"
