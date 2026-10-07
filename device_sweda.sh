@@ -36,4 +36,5 @@ fi
 
 if [ -f /Zanthus/Zeus/pdvJava/CONVERSOR.ini ];then
 sed -i "s|^PORTA = /dev/.*|PORTA = /dev/$USBSERAL_PORT_PRINTER|" /Zanthus/Zeus/pdvJava/CONVERSOR.ini
+sed -i "s|^PORTA=/dev/.*|PORTA=/dev/$USBSERAL_PORT_PRINTER|" /Zanthus/Zeus/pdvJava/CONVERSOR.ini
 fi
