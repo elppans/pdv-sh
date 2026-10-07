@@ -14,8 +14,6 @@
 DEVICE_USB0="/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0"
 DEVICE_TOLEDO="$(ls /dev/serial/by-id/usb-TOLEDO_CDC_DEVICE_*-if*)"
 DEVICE_MAGELLAN="$(ls /dev/serial/by-id/usb-Datalogic_S.r.I_and_its_affiliates_Magellan_3x10i_*-if*)"
-DEVICE_SWEDA="$(ls /dev/serial/by-id/usb-SWEDA_USB_To_Serial_Interface_*-if*)"
-DEVICE_PINPAD="$(ls /dev/serial/by-id/usb*Pinpad_Terminal-*-if*)"
 
 # Device SERIAL
 DEVICE_USB0_SERIAL="/dev/ttyS2"
@@ -29,27 +27,6 @@ export DEVICE_MAGELLAN
 export DEVICE_USB0_SERIAL
 export DEVICE_TOLEDO_SERIAL
 export DEVICE_MAGELLAN_SERIAL
-
-# Impressora Sweda, ttyACM0
-if ls -l "$DEVICE_SWEDA" &>/dev/null ; then
-DEVICE_SWEDA_PRINTER=$(ls -l "$DEVICE_SWEDA" 2>/dev/null | awk '{print $NF}')
-USBSERAL_PORT_PRINTER=$(basename $DEVICE_SWEDA_PRINTER 2>/dev/null)
-ln -sf /dev/$USBSERAL_PORT_PRINTER /dev/ttyACM999
-fi
-# PINPAD, ttyACM1
-if ls -l "$DEVICE_PINPAD" &>/dev/null ; then
-DEVICE_PINPAD_PORT=$(ls -l "$DEVICE_PINPAD" 2>/dev/null | awk '{print $NF}')
-USBSERAL_PORT_PINPAD=$(basename $DEVICE_PINPAD_PORT 2>/dev/null)
-ln -sf /dev/$USBSERAL_PORT_PINPAD /dev/ttyACM888
-fi
-# Impressora Sweda
-if [ -f /dev/ttyACM999 ]; then
-  mv /dev/ttyACM999 /dev/ttyACM0
-fi
-# PINPAD
-if [ -f /dev/ttyACM888 ]; then
-mv /dev/ttyACM888 /dev/ttyACM1
-fi
 
 # DEBUG:
 echo "DEVICE_BALANCA_USB0: $DEVICE_BALANCA_USB0"
