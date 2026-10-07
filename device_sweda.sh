@@ -32,7 +32,7 @@ USBSERAL_PORT_PRINTER=$(basename $DEVICE_SWEDA_PRINTER 2>/dev/null)
 # ln -sf /dev/$USBSERAL_PORT_PRINTER /dev/ttyACM999
 fi
 
-# echo "USBSERAL_PORT_PRINTER: $USBSERAL_PORT_PRINTER"
+echo "USBSERAL_PORT_PRINTER: $USBSERAL_PORT_PRINTER"
 
 if [ -f /Zanthus/Zeus/pdvJava/CONVERSOR.ini ];then
 sed -i "s|^PORTA = /dev/.*|PORTA = /dev/$USBSERAL_PORT_PRINTER|" /Zanthus/Zeus/pdvJava/CONVERSOR.ini
