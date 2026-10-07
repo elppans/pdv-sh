@@ -20,7 +20,7 @@
 # SUBSYSTEM=="tty", ATTRS{idVendor}=="1753", ATTRS{idProduct}=="c901|c902", RUN+="/usr/local/bin/device_pinpad.sh"
 # ACTION=="add", ATTRS{idVendor}=="1753", ATTRS{idProduct}=="c901|c902", SUBSYSTEM=="tty", KERNEL=="ttyUSB[0-9]*|ttyACM[0-9]*", SYMLINK+="ttyPIN", MODE="0666"
 
-DEVICE_PINPAD="$(ls /dev/serial/by-id/usb*Pinpad_Terminal-*-if*)"
+DEVICE_PINPAD="$(ls /dev/serial/by-id/usb*Pinpad_Terminal-*if*)"
 
 # PINPAD, ttyACM1
 if ls -l "$DEVICE_PINPAD" &>/dev/null ; then
