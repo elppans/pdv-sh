@@ -28,11 +28,6 @@ export DEVICE_USB0_SERIAL
 export DEVICE_TOLEDO_SERIAL
 export DEVICE_MAGELLAN_SERIAL
 
-# DEBUG:
-echo "DEVICE_BALANCA_USB0: $DEVICE_BALANCA_USB0"
-echo "USBSERAL_PORT_BALANCA: $USBSERAL_PORT_BALANCA"
-fi
-
 # Balança USB/Serial, ttyUSB0
 if ls -l "$DEVICE_USB0" &>/dev/null ; then
 DEVICE_BALANCA_USB0=$(ls -l "$DEVICE_USB0" 2>/dev/null | awk '{print $NF}')
