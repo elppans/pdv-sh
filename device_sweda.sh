@@ -15,7 +15,7 @@
 # * Método 2:
 # 1) Copie este Script para /usr/local/bin/device_sweda.sh
 # 2) Crie/Modifique a seguinte regra:
-# 97-Impressora.rules
+# 99-Impressora.rules
 # SWEDA SL300-S
 # KERNEL=="*[0-9]", SUBSYSTEM=="usb", ACTION=="add", ATTRS{idVendor}=="1c8a", SYMLINK+="sweda", OWNER="lp", GROUP="lp", MODE="0666"
 # KERNEL=="*[0-9]", SUBSYSTEM=="usb", ATTRS{idVendor}=="1c8a", RUN+="/usr/local/bin/device_sweda.sh"
